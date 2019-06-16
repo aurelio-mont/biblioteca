@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaRol extends Migration
+class CrearTablaPermisoLibro extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CrearTablaRol extends Migration
      */
     public function up()
     {
-        Schema::create('rol', function (Blueprint $table) {
+        Schema::create('libro', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 50)->unique();
+            $table->string('titulo', 100);
+            $table->string('isbn', 30);
+            $table->string('autor', 100);
+            $table->unsignedTinyInteger('cantidad');
+            $table->string('editorial', 50)->nullable();
+            $table->string('foto', 100)->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
@@ -29,6 +34,6 @@ class CrearTablaRol extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rol');
+        Schema::dropIfExists('libro');
     }
 }
